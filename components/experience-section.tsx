@@ -24,7 +24,7 @@ const experiences = [
         ],
       },
       {
-        name: "Van Trial",
+        name: "Van Trail",
         description: "Trail Discovery and Management App",
         achievements: [
           "Developed features for adding, reviewing, reporting, and wishlisting trails",

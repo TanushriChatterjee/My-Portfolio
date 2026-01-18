@@ -1,24 +1,34 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { motion, useInView } from "framer-motion"
-import { useRef, useState } from "react"
-import { Mail, MapPin, Send, Github, Linkedin, Phone, MessageSquare } from "lucide-react"
+import type React from "react";
+import { motion, useInView } from "framer-motion";
+import { useRef, useState } from "react";
+import {
+  Mail,
+  MapPin,
+  Send,
+  Github,
+  Linkedin,
+  Phone,
+  MessageSquare,
+} from "lucide-react";
 
 export function ContactSection() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [formState, setFormState] = useState<"idle" | "success" | "error">("idle")
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formState, setFormState] = useState<"idle" | "success" | "error">(
+    "idle",
+  );
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-    setIsSubmitting(false)
-    setFormState("success")
-    setTimeout(() => setFormState("idle"), 3000)
-  }
+    e.preventDefault();
+    setIsSubmitting(true);
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    setIsSubmitting(false);
+    setFormState("success");
+    setTimeout(() => setFormState("idle"), 3000);
+  };
 
   return (
     <section id="contact" className="py-32 px-6 relative" ref={ref}>
@@ -45,14 +55,17 @@ export function ContactSection() {
             <span className="px-3 py-1 bg-primary/20 border border-primary/30 rounded text-primary font-mono text-xs">
               05
             </span>
-            <span className="text-primary font-mono text-sm uppercase tracking-widest">Connect</span>
+            <span className="text-primary font-mono text-sm uppercase tracking-widest">
+              Connect
+            </span>
             <span className="h-px w-12 bg-primary/50" />
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance font-display">
             Start a <span className="text-primary">New Quest</span> Together
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto text-pretty">
-            Ready to collaborate? Send a message and let's build something amazing!
+            Ready to collaborate? Send a message and let's build something
+            amazing!
           </p>
         </motion.div>
 
@@ -69,7 +82,9 @@ export function ContactSection() {
                     <Mail className="text-primary" size={24} />
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-1 text-foreground font-mono">Email</h3>
+                    <h3 className="font-semibold mb-1 text-foreground font-mono">
+                      Email
+                    </h3>
                     <a
                       href="mailto:tanushri1595@gmail.com"
                       className="text-muted-foreground hover:text-primary transition-colors"
@@ -86,8 +101,13 @@ export function ContactSection() {
                     <Phone className="text-primary" size={24} />
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-1 text-foreground font-mono">Phone</h3>
-                    <a href="tel:+916207012561" className="text-muted-foreground hover:text-primary transition-colors">
+                    <h3 className="font-semibold mb-1 text-foreground font-mono">
+                      Phone
+                    </h3>
+                    <a
+                      href="tel:+916207012561"
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                    >
                       +91 62070 12561
                     </a>
                   </div>
@@ -100,8 +120,12 @@ export function ContactSection() {
                     <MapPin className="text-primary" size={24} />
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-1 text-foreground font-mono">Location</h3>
-                    <p className="text-muted-foreground">Kolkata, West Bengal, India</p>
+                    <h3 className="font-semibold mb-1 text-foreground font-mono">
+                      Location
+                    </h3>
+                    <p className="text-muted-foreground">
+                      Kolkata, West Bengal, India
+                    </p>
                   </div>
                 </div>
               </div>
@@ -113,14 +137,28 @@ export function ContactSection() {
                 </h3>
                 <div className="flex gap-3">
                   {[
-                    { icon: Github, href: "https://github.com/tanushri18091999", label: "GitHub" },
-                    { icon: Linkedin, href: "#", label: "LinkedIn" },
-                    { icon: Mail, href: "mailto:tanushri1595@gmail.com", label: "Email" },
+                    {
+                      icon: Github,
+                      href: "https://github.com/TanushriChatterjee",
+                      label: "GitHub",
+                    },
+                    {
+                      icon: Linkedin,
+                      href: "https://www.linkedin.com/in/tanushri18091999/",
+                      label: "LinkedIn",
+                    },
+                    {
+                      icon: Mail,
+                      href: "mailto:tanushri1597@gmail.com",
+                      label: "Email",
+                    },
                   ].map(({ icon: Icon, href, label }) => (
                     <motion.a
                       key={label}
                       href={href}
                       aria-label={label}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="w-12 h-12 rounded bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all border border-border hover:border-primary/30"
                       whileHover={{ scale: 1.1, y: -2 }}
                       whileTap={{ scale: 0.95 }}
@@ -146,12 +184,17 @@ export function ContactSection() {
                 <span className="w-3 h-3 rounded-full bg-destructive" />
                 <span className="w-3 h-3 rounded-full bg-chart-4" />
                 <span className="w-3 h-3 rounded-full bg-primary" />
-                <span className="ml-2 text-xs font-mono text-muted-foreground">new_message.txt</span>
+                <span className="ml-2 text-xs font-mono text-muted-foreground">
+                  new_message.txt
+                </span>
               </div>
 
               <div className="grid sm:grid-cols-2 gap-4 mb-4">
                 <div>
-                  <label htmlFor="name" className="block text-xs font-mono mb-2 text-muted-foreground uppercase">
+                  <label
+                    htmlFor="name"
+                    className="block text-xs font-mono mb-2 text-muted-foreground uppercase"
+                  >
                     Name
                   </label>
                   <input
@@ -164,7 +207,10 @@ export function ContactSection() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-xs font-mono mb-2 text-muted-foreground uppercase">
+                  <label
+                    htmlFor="email"
+                    className="block text-xs font-mono mb-2 text-muted-foreground uppercase"
+                  >
                     Email
                   </label>
                   <input
@@ -179,7 +225,10 @@ export function ContactSection() {
               </div>
 
               <div className="mb-4">
-                <label htmlFor="subject" className="block text-xs font-mono mb-2 text-muted-foreground uppercase">
+                <label
+                  htmlFor="subject"
+                  className="block text-xs font-mono mb-2 text-muted-foreground uppercase"
+                >
                   Subject
                 </label>
                 <input
@@ -193,7 +242,10 @@ export function ContactSection() {
               </div>
 
               <div className="mb-6">
-                <label htmlFor="message" className="block text-xs font-mono mb-2 text-muted-foreground uppercase">
+                <label
+                  htmlFor="message"
+                  className="block text-xs font-mono mb-2 text-muted-foreground uppercase"
+                >
                   Message
                 </label>
                 <textarea
@@ -246,5 +298,5 @@ export function ContactSection() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

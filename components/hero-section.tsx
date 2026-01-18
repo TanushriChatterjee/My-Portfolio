@@ -131,7 +131,7 @@ export function HeroSection() {
                 },
                 {
                   icon: Mail,
-                  href: "mailto:tanushri1595@gmail.com",
+                  href: "mailto:tanushri1597@gmail.com",
                   label: "Email",
                 },
               ].map(({ icon: Icon, href, label }) => (

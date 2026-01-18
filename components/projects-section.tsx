@@ -1,8 +1,16 @@
-"use client"
+"use client";
 
-import { motion, useInView } from "framer-motion"
-import { useRef, useState } from "react"
-import { ExternalLink, Github, Rocket, Map, ShoppingCart, GraduationCap, Sparkles } from "lucide-react"
+import { motion, useInView } from "framer-motion";
+import { useRef, useState } from "react";
+import {
+  ExternalLink,
+  Github,
+  Rocket,
+  Map,
+  ShoppingCart,
+  GraduationCap,
+  Sparkles,
+} from "lucide-react";
 
 const projects = [
   {
@@ -14,10 +22,10 @@ const projects = [
     color: "primary",
     liveUrl: "#",
     githubUrl: "https://github.com/TanushriChatterjee/StarLaunch",
-    status: "LEGENDARY",
+    status: "COMPLETED",
   },
   {
-    title: "Van Trial",
+    title: "Van Trail",
     description:
       "Trail discovery and management app featuring map-based navigation, community reviews, wishlisting, and personalized recommendations.",
     icon: Map,
@@ -25,7 +33,7 @@ const projects = [
     color: "accent",
     liveUrl: "#",
     githubUrl: "https://github.com/TanushriChatterjee/VanTrail-Frontend",
-    status: "EPIC",
+    status: "COMPLETED",
   },
   {
     title: "Spare Wo",
@@ -36,7 +44,7 @@ const projects = [
     color: "chart-4",
     liveUrl: "#",
     githubUrl: "https://github.com/TanushriChatterjee/SpareWo-Backend",
-    status: "RARE",
+    status: "COMPLETED",
   },
   {
     title: "Online Exam Portal",
@@ -47,27 +55,38 @@ const projects = [
     color: "chart-3",
     liveUrl: "#",
     githubUrl: "https://github.com/TanushriChatterjee/ExamPortal",
-    status: "EPIC",
+    status: "COMPLETED",
   },
-]
+];
 
 export function ProjectsSection() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "LEGENDARY":
-        return "text-chart-4 border-chart-4/50 bg-chart-4/10"
-      case "EPIC":
-        return "text-accent border-accent/50 bg-accent/10"
-      case "RARE":
-        return "text-primary border-primary/50 bg-primary/10"
+  const normalize = (value: string) =>
+    value.trim().toUpperCase().replace(/\s+/g, "_");
+
+  const getStatusColor = (title: string, status: string) => {
+    const key = `${normalize(title)}-${normalize(status)}`;
+
+    switch (key) {
+      case "STAR_LAUNCH-COMPLETED":
+        return "text-primary border-primary/50 bg-primary/10";
+
+      case "VAN_TRAIL-COMPLETED":
+        return "text-accent border-accent/50 bg-accent/10";
+
+      case "SPARE_WO-COMPLETED":
+        return "text-chart-4 border-chart-4/50 bg-chart-4/10";
+
+      case "ONLINE_EXAM_PORTAL-COMPLETED":
+        return "text-teal-500 border-teal-500/50 bg-teal-500/10";
+
       default:
-        return "text-muted-foreground border-border bg-secondary"
+        return "text-muted-foreground border-border bg-secondary";
     }
-  }
+  };
 
   return (
     <section id="projects" className="py-32 px-6 bg-card/30" ref={ref}>
@@ -82,7 +101,9 @@ export function ProjectsSection() {
             <span className="px-3 py-1 bg-primary/20 border border-primary/30 rounded text-primary font-mono text-xs">
               04
             </span>
-            <span className="text-primary font-mono text-sm uppercase tracking-widest">Achievements</span>
+            <span className="text-primary font-mono text-sm uppercase tracking-widest">
+              Achievements
+            </span>
             <span className="h-px flex-1 bg-primary/30" />
           </div>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
@@ -110,6 +131,7 @@ export function ProjectsSection() {
               {/* Status badge */}
               <div
                 className={`absolute top-4 right-4 z-10 px-2 py-1 text-xs font-mono rounded border ${getStatusColor(
+                  project.title,
                   project.status,
                 )}`}
               >
@@ -126,10 +148,20 @@ export function ProjectsSection() {
                   transition={{ duration: 0.4 }}
                   className="relative"
                 >
-                  <project.icon size={64} className={`text-${project.color} opacity-80`} />
+                  <project.icon
+                    size={64}
+                    className={`text-${project.color} opacity-80`}
+                  />
                   {hoveredIndex === index && (
-                    <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="absolute inset-0 animate-ping">
-                      <project.icon size={64} className={`text-${project.color} opacity-30`} />
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      className="absolute inset-0 animate-ping"
+                    >
+                      <project.icon
+                        size={64}
+                        className={`text-${project.color} opacity-30`}
+                      />
                     </motion.div>
                   )}
                 </motion.div>
@@ -159,7 +191,9 @@ export function ProjectsSection() {
                 <h3 className="text-xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors font-mono">
                   {project.title}
                 </h3>
-                <p className="text-sm text-muted-foreground mb-4 line-clamp-3">{project.description}</p>
+                <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
+                  {project.description}
+                </p>
 
                 <div className="flex gap-4 pt-4 border-t border-border">
                   {/* <a
@@ -200,5 +234,5 @@ export function ProjectsSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
